@@ -49,11 +49,13 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        cardTheme: CardTheme(
-          elevation: 4,
+        // Using Material 3 CardTheme for modern design
+        cardTheme: CardThemeData(
+          elevation: 2.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
+          clipBehavior: Clip.antiAlias,
         ),
       ),
       initialRoute: '/login',

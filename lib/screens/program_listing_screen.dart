@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 import '../models/program.dart';
 import '../services/program_service.dart';
+import '../widgets/custom_drawer.dart';
+import '../widgets/custom_app_bar.dart';
+import '../widgets/program_card.dart';
 import 'program_details_screen.dart';
 
 class ProgramListingScreen extends StatefulWidget {
@@ -16,7 +19,6 @@ class _ProgramListingScreenState extends State<ProgramListingScreen> {
   late Future<List<Program>> _programsFuture;
   final TextEditingController _searchController = TextEditingController();
   String _selectedLevel = 'All Levels';
-  List<Program> _filteredPrograms = [];
   bool _isSearching = false;
 
   @override
@@ -54,21 +56,45 @@ class _ProgramListingScreenState extends State<ProgramListingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: _isSearching
-            ? TextField(
-                controller: _searchController,
-                style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
-                  hintText: 'Search programs...',
-                  hintStyle: TextStyle(color: Colors.white70),
-                  border: InputBorder.none,
+      drawer: const CustomDrawer(),
+      appBar: CustomAppBar(
+        title: 'Programs',
+        centerTitle: false,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(60),
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            child: TextField(
+              controller: _searchController,
+              style: const TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                hintText: 'Search programs...',
+                hintStyle: const TextStyle(color: Colors.white70),
+                prefixIcon: const Icon(Icons.search, color: Colors.white70),
+                suffixIcon: _isSearching
+                    ? IconButton(
+                        icon: const Icon(Icons.clear, color: Colors.white70),
+                        onPressed: () {
+                          _searchController.clear();
+                        },
+                      )
+                    : null,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: const BorderSide(color: Colors.white70),
                 ),
-                autofocus: true,
-              )
-            : const Text('Programs'),
-        backgroundColor: Colors.green,
-        elevation: 0,
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: const BorderSide(color: Colors.white70),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: const BorderSide(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+        ),
         actions: [
           IconButton(
             icon: Icon(_isSearching ? Icons.close : Icons.search),
@@ -191,92 +217,17 @@ class _ProgramListingScreenState extends State<ProgramListingScreen> {
                 return OpenContainer(
                   transitionType: ContainerTransitionType.fadeThrough,
                   openBuilder: (context, _) => ProgramDetailsScreen(),
-                  closedElevation: 4,
-                  closedShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  closedColor: Theme.of(context).cardColor,
-                  tappable: false,
-                  closedBuilder: (context, openContainer) => Card(
-                    elevation: 0,
-                    margin: const EdgeInsets.only(bottom: 16),
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.all(16),
-                      leading: const CircleAvatar(
-                        radius: 30,
-                        backgroundColor: Colors.green,
-                        child: Icon(
-                          Icons.school,
-                          color: Colors.white,
-                          size: 24,
-                        ),
-                      ),
-                      title: Text(
-                        program.title,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            program.description,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey,
-                            ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          const SizedBox(height: 8),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.person,
-                                size: 16,
-                                color: Colors.green,
-                              ),
-                              const SizedBox(width: 4),
-                              Text(
-                                program.instructor,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.black54,
-                                ),
-                              ),
-                              const SizedBox(width: 16),
-                              const Icon(
-                                Icons.star,
-                                size: 16,
-                                color: Colors.amber,
-                              ),
-                              const SizedBox(width: 4),
-                              Text(
-                                program.rating.toString(),
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.black54,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      trailing: const Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.green,
-                      ),
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          '/program_details',
-                          arguments: program,
-                        );
-                      },
-                    ),
+                  closedElevation: 0,
+                  closedColor: Colors.transparent,
+                  closedBuilder: (context, openContainer) => ProgramCard(
+                    program: program,
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/program_details',
+                        arguments: program,
+                      );
+                    },
                   ),
                 );
               },
