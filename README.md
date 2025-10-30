@@ -1,4 +1,31 @@
-# LearnLoop: A Smart Learning Companion
+# Excellerate Learning Platform
+
+## Recent Updates (October 30, 2025)
+
+### New Features & Improvements
+1. **Enhanced Program Listing Screen**
+   - Added real-time search functionality
+   - Implemented level-based filtering (Beginner, Intermediate, Advanced)
+   - Smooth animations and transitions between screens
+   - Better error handling and empty states
+
+2. **Program Details Screen**
+   - Redesigned UI with card-based layout
+   - Added enrollment functionality with loading states
+   - Interactive feedback system
+   - Improved navigation and user experience
+
+3. **Feedback System**
+   - New feedback form with validation
+   - Star rating component
+   - Real-time form validation
+   - Success/error state handling
+
+4. **Data Integration**
+   - Connected to mock API via JSON
+   - Implemented ProgramService for data fetching
+   - Added error handling and retry mechanisms
+   - Efficient state management
 
 ## Purpose of the App
 
