@@ -8,6 +8,10 @@ import 'screens/signup_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/program_listing_screen.dart';
 import 'screens/program_details_screen.dart';
+import 'screens/my_programs_screen.dart';
+import 'screens/placeholder_screen.dart';
+import 'screens/main_navigation_screen.dart';
+import 'screens/activity_feed_screen.dart';
 
 
 void main() async {
@@ -62,9 +66,33 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginScreen(),
         '/signup': (context) => const SignupScreen(),
-        '/home': (context) => const HomeScreen(),
+        '/home': (context) => const MainNavigationScreen(),
         '/program_listing': (context) => const ProgramListingScreen(),
         '/program_details': (context) => const ProgramDetailsScreen(),
+        '/my_programs': (context) => const MyProgramsScreen(),
+        '/assignments': (context) => PlaceholderScreen(
+              title: 'Assignments',
+              icon: Icons.assignment_outlined,
+              message: 'Track your progress and complete assignments for your enrolled programs.',
+              actionLabel: 'View Programs',
+              onActionPressed: () => Navigator.pushNamed(context, '/my_programs'),
+            ),
+        '/community': (context) => const PlaceholderScreen(
+              title: 'Community',
+              icon: Icons.people_outline,
+              message: 'Connect with fellow learners, share experiences, and participate in discussions.',
+            ),
+        '/progress': (context) => const PlaceholderScreen(
+              title: 'Progress',
+              icon: Icons.analytics_outlined,
+              message: 'Track your learning journey and monitor your achievements.',
+            ),
+          '/activity_feed': (context) => const ActivityFeedScreen(),
+        '/settings': (context) => const PlaceholderScreen(
+              title: 'Settings',
+              icon: Icons.settings_outlined,
+              message: 'Customize your app preferences and manage your account settings.',
+            ),
       },
     );
   }

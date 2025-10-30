@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../models/program.dart';
 
 class ProgramCard extends StatelessWidget {
   final Program program;
   final VoidCallback onTap;
+  final VoidCallback? onShare;
+  final VoidCallback? onEnroll;
 
   const ProgramCard({
     super.key,
     required this.program,
     required this.onTap,
+    this.onShare,
+    this.onEnroll,
   });
 
   @override
@@ -61,32 +66,48 @@ class ProgramCard extends StatelessWidget {
                     children: [
                       Positioned.fill(
                         child: program.imageUrl.isNotEmpty
-                            ? Image.network(
-                                program.imageUrl,
-                                fit: BoxFit.cover,
-                                loadingBuilder: (context, child, loadingProgress) {
-                                  if (loadingProgress == null) return child;
-                                  return Center(
-                                    child: CircularProgressIndicator(
-                                      value: loadingProgress.expectedTotalBytes != null
-                                          ? loadingProgress.cumulativeBytesLoaded /
-                                              loadingProgress.expectedTotalBytes!
-                                          : null,
+                            ? (program.imageUrl.startsWith('http')
+                                ? Image.network(
+                                    program.imageUrl,
+                                    fit: BoxFit.cover,
+                                    loadingBuilder: (context, child, loadingProgress) {
+                                      if (loadingProgress == null) return child;
+                                      return Center(
+                                        child: CircularProgressIndicator(
+                                          value: loadingProgress.expectedTotalBytes != null
+                                              ? loadingProgress.cumulativeBytesLoaded /
+                                                  loadingProgress.expectedTotalBytes!
+                                              : null,
+                                        ),
+                                      );
+                                    },
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return const Center(
+                                        child: Icon(
+                                          Icons.broken_image,
+                                          size: 48,
+                                          color: Colors.white,
+                                        ),
+                                      );
+                                    },
+                                  )
+                                : Image.asset(
+                                    program.imageUrl,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, error, stackTrace) => const Center(
+                                      child: Icon(
+                                        Icons.broken_image,
+                                        size: 48,
+                                        color: Colors.white,
+                                      ),
                                     ),
-                                  );
-                                },
-                                errorBuilder: (context, error, stackTrace) {
-                                  return const Icon(
-                                    Icons.broken_image,
-                                    size: 48,
-                                    color: Colors.white,
-                                  );
-                                },
-                              )
-                            : const Icon(
-                                Icons.school,
-                                size: 48,
-                                color: Colors.white,
+                                  ))
+                            : const Center(
+                                child: Icon(
+                                  Icons.school,
+                                  size: 48,
+                                  color: Colors.white,
+                                ),
                               ),
                       ),
                       Positioned(
@@ -219,6 +240,49 @@ class ProgramCard extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontSize: 12,
                             ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: ElevatedButton.icon(
+                            onPressed: onEnroll ?? () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Enrolled in "${program.title}"'),
+                                  backgroundColor: Theme.of(context).colorScheme.primary,
+                                ),
+                              );
+                            },
+                            icon: const Icon(Icons.school),
+                            label: const Text('Enroll'),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Theme.of(context).colorScheme.primary,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        IconButton(
+                          onPressed: onShare ?? () async {
+                            final messenger = ScaffoldMessenger.of(context);
+                            final shareText = '${program.title} - ${program.description}\nLearn more in the Excellerate app.';
+                            await Clipboard.setData(ClipboardData(text: shareText));
+                            messenger.showSnackBar(
+                              const SnackBar(content: Text('Program details copied to clipboard')),
+                            );
+                          },
+                          icon: Icon(
+                            Icons.share,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
                       ],
