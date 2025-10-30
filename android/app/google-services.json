@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "270779683640",
+    "project_id": "learn-loop-f1855",
+    "storage_bucket": "learn-loop-f1855.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270779683640:android:5aad3f94b3fd33f06ce7cd",
+        "android_client_info": {
+          "package_name": "Learn.Loop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEmpwSDAWtGH-DNdB5cPZqKXCrnDW3Pes"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270779683640:android:9f71ac57af5499a16ce7cd",
+        "android_client_info": {
+          "package_name": "com.example.excellerate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEmpwSDAWtGH-DNdB5cPZqKXCrnDW3Pes"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

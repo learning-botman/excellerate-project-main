@@ -1,0 +1,82 @@
+[
+  {
+    "id": "flutter-101",
+    "title": "Flutter Basics",
+    "description": "Master the fundamentals of Flutter development. Learn to build beautiful, natively compiled applications for mobile, web, and desktop from a single codebase. This comprehensive course covers widgets, state management, navigation, and more.",
+    "instructor": "Sarah Johnson",
+    "duration": "8 weeks",
+    "level": "Beginner",
+    "topics": [
+      "Dart Basics",
+      "Widget Tree",
+      "State Management",
+      "Navigation",
+      "UI Design",
+      "App Architecture"
+    ],
+    "imageUrl": "assets/images/flutter.png",
+    "rating": 4.8,
+    "enrolledCount": 1250,
+    "lastUpdated": "2025-10-15"
+  },
+  {
+    "id": "advanced-dart",
+    "title": "Advanced Dart Programming",
+    "description": "Take your Dart programming skills to the next level. Deep dive into advanced concepts including asynchronous programming, generics, mixins, and best practices for large-scale applications.",
+    "instructor": "Michael Chen",
+    "duration": "6 weeks",
+    "level": "Advanced",
+    "topics": [
+      "Async/Await",
+      "Generics",
+      "Mixins",
+      "Collections",
+      "Error Handling",
+      "Design Patterns"
+    ],
+    "imageUrl": "assets/images/dart.png",
+    "rating": 4.9,
+    "enrolledCount": 850,
+    "lastUpdated": "2025-10-20"
+  },
+  {
+    "id": "ui-mastery",
+    "title": "UI/UX Design Mastery",
+    "description": "Learn to create stunning user interfaces and exceptional user experiences. This course combines design theory with practical implementation in Flutter, covering Material Design, custom themes, animations, and responsive layouts.",
+    "instructor": "Emma Davis",
+    "duration": "10 weeks",
+    "level": "Intermediate",
+    "topics": [
+      "Material Design",
+      "Custom Themes",
+      "Animations",
+      "Responsive Design",
+      "User Testing",
+      "Design Systems"
+    ],
+    "imageUrl": "assets/images/ui-ux.png",
+    "rating": 4.7,
+    "enrolledCount": 975,
+    "lastUpdated": "2025-10-25"
+  },
+  {
+    "id": "state-management",
+    "title": "State Management in Flutter",
+    "description": "Master different state management solutions in Flutter. Compare and implement Provider, Riverpod, Bloc, and GetX. Learn when to use each solution and how to architect large applications effectively.",
+    "instructor": "Alex Thompson",
+    "duration": "4 weeks",
+    "level": "Intermediate",
+    "topics": [
+      "Provider",
+      "Riverpod",
+      "Bloc Pattern",
+      "GetX",
+      "State Architecture",
+      "Testing"
+    ],
+    "imageUrl": "assets/images/state.png",
+    "rating": 4.9,
+    "enrolledCount": 1100,
+    "lastUpdated": "2025-10-28"
+  }
+]
