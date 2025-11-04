@@ -123,22 +123,22 @@ samples, guidance on mobile development, and a full API reference.
 ## Screenshots      
 
 ### Homepage
-![Homepage](./assets/home.svg)
+![Homepage](./assets/home.PNG)
 
 ### Login
-![Login Page](./assets/login.svg)
+![Login Page](./assets/login.PNG)
 
 ### Program Listing 
-![Program Listing](./assets/listing.svg)
+![Program Listing](./assets/listing.PNG)
 
 ### Program Details
-![Program Details](./assets/details1.svg)
+![Program Details](./assets/details1.PNG)
 
 ### Program Details
-![Program Details](./assets/details2.svg)
+![Program Details](./assets/details2.PNG)
 
 ### Program Details
-![Program Details](./assets/details3.svg)
+![Program Details](./assets/details3.PNG)
 
 ### Program Details
-![Program Details](./assets/details4.svg)
+![Program Details](./assets/details4.PNG)
